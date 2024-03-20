@@ -6,6 +6,8 @@ const Register = () => {
 
     const navigate = useNavigate();
 
+    const [loader,setLoader] = useState(true);
+
     const [data, setData] = useState({
         email: "",
         password: ""
@@ -21,13 +23,15 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data)
+        setLoader(false)
         await axios.post("https://crud-backend-uimf.onrender.com/register", { data })
             .then(res => {
+                setLoader(true)
                 alert(res.response.data.msg);
                 navigate('/')
             })
             .catch(err => {
+                setLoader(true)
                 alert(err.response.data.msg);
             })
     }
@@ -60,6 +64,7 @@ const Register = () => {
                         name='password' />
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
+                <div hidden={loader} className='loader'></div>
                 <p className='mt-4'>Already have an account! Sign in below</p>
                 <button className='btn btn-primary' onClick={() => navigate('/login')}>Go to Signin</button>
             </form>
