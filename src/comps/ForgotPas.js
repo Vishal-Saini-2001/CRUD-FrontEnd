@@ -24,7 +24,10 @@ const ForgotPas = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoader(true)
-        if (data.password !== cpass) alert("Please confirm your password")
+        if (data.password !== cpass){
+            alert("Please confirm your password");
+            setLoader(false)
+        }
         else {
             await axios.post("https://crud-backend-uimf.onrender.com/update", { data })
             .then(res => {
