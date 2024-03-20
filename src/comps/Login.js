@@ -7,7 +7,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const [loader,setLoader] = useState(true);
+    const [loader,setLoader] = useState(false);
 
     const [data, setData] = useState({
         email: "",
@@ -24,15 +24,15 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoader(false)
+        setLoader(true)
         await axios.post("https://crud-backend-uimf.onrender.com/login", { data })
             .then(res => {
-                setLoader(true);
+                setLoader(false);
                 alert(res.data.msg);
                 navigate('/logedin')
             })
             .catch(err => {
-                setLoader(true);
+                setLoader(false);
                 alert(err.response.data.msg);
             })
     }
@@ -64,7 +64,7 @@ const Login = () => {
                         name='password' />
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
-                <div hidden={loader} className='loader'></div>
+                {loader && <div className='loader'></div>}
                 <p className='mt-4'>Dont have an account! Create one below</p>
                 <button className='btn btn-primary m-4' onClick={()=>navigate('/')}>Resgister first</button>
                 <button onClick={()=>navigate('/forgot')} className='btn btn-danger mx-4'>Forgot password</button>

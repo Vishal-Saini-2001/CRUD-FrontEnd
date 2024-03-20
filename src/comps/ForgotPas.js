@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const ForgotPas = () => {
     const navigate = useNavigate();
-    const [loader,setLoader] = useState(true);
+    const [loader,setLoader] = useState(false);
 
     const [data, setData] = useState({
         email: "",
@@ -23,17 +23,17 @@ const ForgotPas = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoader(false)
+        setLoader(true)
         if (data.password !== cpass) alert("Please confirm your password")
         else {
             await axios.post("https://crud-backend-uimf.onrender.com/update", { data })
             .then(res => {
-                setLoader(true)
+                setLoader(false)
                 alert(res.data.msg);
                 navigate('/login')
             })
             .catch(err => {
-                setLoader(true)
+                setLoader(false)
                 alert(err.response.data.msg);
             })
         }
@@ -77,7 +77,7 @@ const ForgotPas = () => {
                         name='password' />
                 </div>
                 <button type="submit" className="btn btn-primary">Update</button>
-                <div hidden={loader} className='loader'></div>
+                {loader && <div hidden={loader} className='loader'></div>}
             </form>
         </div>
     )
