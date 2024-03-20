@@ -80,7 +80,7 @@ const ForgotPas = () => {
                         name='password' />
                 </div>
                 <button type="submit" className="btn btn-primary">Update</button>
-                {loader && <div hidden={loader} className='loader'></div>}
+                {loader && <div className='loader'></div>}
             </form>
         </div>
     )

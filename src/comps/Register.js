@@ -64,7 +64,7 @@ const Register = () => {
                         name='password' />
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
-                {loader && <div hidden={loader} className='loader'></div>}
+                {loader && <div className='loader'></div>}
                 <p className='mt-4'>Already have an account! Sign in below</p>
                 <button className='btn btn-primary' onClick={() => navigate('/login')}>Go to Signin</button>
             </form>
