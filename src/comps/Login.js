@@ -23,7 +23,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await axios.post("http://localhost:8080/login", { data })
+        await axios.post("https://crud-backend-uimf.onrender.com/login", { data })
             .then(res => {
                 alert(res.data.msg);
                 navigate('/logedin')

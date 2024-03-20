@@ -26,7 +26,7 @@ const ForgotPas = () => {
 
         if (data.password != cpass) alert("Please confirm your password")
         else {
-            await axios.post("http://localhost:8080/update", { data })
+            await axios.post("https://crud-backend-uimf.onrender.com/update", { data })
             .then(res => {
                 alert(res.data.msg);
                 navigate('/login')

@@ -22,7 +22,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(data)
-        await axios.post("http://localhost:8080/register", { data })
+        await axios.post("https://crud-backend-uimf.onrender.com/register", { data })
             .then(res => {
                 alert(res.response.data.msg);
                 navigate('/')
